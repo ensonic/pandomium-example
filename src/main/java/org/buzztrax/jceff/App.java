@@ -19,14 +19,19 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        String url = "https://wikipedia.org";
+        if (args.length > 0) {
+          url = args[0];
+        }
+    
+        System.out.println("starting");
         PandomiumSettings settings = PandomiumSettings.getDefaultSettings();
 
         final Pandomium pandomium = new Pandomium(settings);
         pandomium.initialize();
 
         PandomiumClient client = pandomium.createClient();
-        PandomiumBrowser browser = client.loadURL("https://panda-lang.org");
+        PandomiumBrowser browser = client.loadURL(url);
 
         final JFrame frame = new JFrame();
         frame.getContentPane().add(browser.toAWTComponent(), BorderLayout.CENTER);
